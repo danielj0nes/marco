@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sägewerk Neuhatten – Lohnschnitt & Jagdeinrichtungen | Kirchhatten</title>
+<meta name="description" content="Sägewerk Neuhatten in Kirchhatten – Ihr Spezialist für Lohnschnitt, mobiles Sägewerk und Jagdeinrichtungen seit 1930. Stationär & mobil vor Ort. Jetzt anfragen.">
+<style>
+  /* =============================================
+     TOKENS
+  ============================================= */
+  :root {
+    --forest:      #1C2B1A;
+    --pine:        #2E4A2C;
+    --bark:        #5C3D1E;
+    --sawdust:     #C8A96E;
+    --cream:       #F5F0E8;
+    --fog:         #E8E2D8;
+    --offwhite:    #FAF8F4;
+    --charcoal:    #1A1A18;
+    --muted:       #6B6659;
+
+    --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    --font-body:    'Inter', 'Helvetica Neue', Arial, sans-serif;
+
+    --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --radius: 3px;
+  }
+
+  /* =============================================
+     RESET & BASE
+  ============================================= */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; font-size: 16px; }
+  body {
+    font-family: var(--font-body);
+    background: var(--offwhite);
+    color: var(--charcoal);
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+  img { max-width: 100%; height: auto; display: block; }
+  a { color: inherit; text-decoration: none; }
+  ::selection { background: var(--sawdust); color: var(--forest); }
+
+  /* =============================================
+     GOOGLE FONTS IMPORT (system fallback if blocked)
+  ============================================= */
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+  /* =============================================
+     NAV
+  ============================================= */
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 4rem;
+    background: transparent;
+    transition: background 0.4s var(--ease), box-shadow 0.4s var(--ease);
+  }
+  .nav.scrolled {
+    background: rgba(28, 43, 26, 0.97);
+    box-shadow: 0 1px 24px rgba(0,0,0,0.25);
+    backdrop-filter: blur(8px);
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    color: var(--cream);
+  }
+  .nav-logo-mark {
+    width: 38px; height: 38px;
+    background: var(--sawdust);
+    border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--forest);
+    letter-spacing: -0.5px;
+    flex-shrink: 0;
+  }
+  .nav-logo-text { font-size: 0.85rem; font-weight: 500; line-height: 1.2; letter-spacing: 0.04em; text-transform: uppercase; }
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+  .nav-links a {
+    color: rgba(245, 240, 232, 0.85);
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--sawdust); }
+  .nav-cta {
+    background: var(--sawdust);
+    color: var(--forest) !important;
+    padding: 0.5rem 1.3rem;
+    border-radius: var(--radius);
+    font-weight: 600 !important;
+    letter-spacing: 0.04em !important;
+    transition: background 0.2s, transform 0.15s !important;
+  }
+  .nav-cta:hover { background: #d9bb82 !important; transform: translateY(-1px); }
+
+  /* Mobile nav toggle */
+  .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+  .nav-toggle span { display: block; width: 22px; height: 2px; background: var(--cream); margin: 4px 0; transition: 0.3s; border-radius: 1px; }
+
+  /* =============================================
+     HERO
+  ============================================= */
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 640px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: var(--forest);
+  }
+  /* SVG forest / wood background using inline CSS art */
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      /* Deep forest gradient */
+      radial-gradient(ellipse 80% 60% at 30% 70%, rgba(46, 74, 44, 0.6) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 80% at 80% 40%, rgba(92, 61, 30, 0.3) 0%, transparent 60%),
+      linear-gradient(160deg, #0d1a0c 0%, #1C2B1A 40%, #2a3d28 70%, #1a2018 100%);
+  }
+  /* Animated "tree rings" as signature design element */
+  .hero-rings {
+    position: absolute;
+    right: -5%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 55vw;
+    height: 55vw;
+    max-width: 700px;
+    max-height: 700px;
+    opacity: 0.09;
+    border-radius: 50%;
+    border: 1px solid var(--sawdust);
+    animation: ringPulse 8s ease-in-out infinite;
+  }
+  .hero-rings::before, .hero-rings::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid var(--sawdust);
+  }
+  .hero-rings::before {
+    inset: 14%;
+    animation: ringPulse 8s ease-in-out 1.5s infinite;
+  }
+  .hero-rings::after {
+    inset: 30%;
+    animation: ringPulse 8s ease-in-out 3s infinite;
+  }
+  .hero-ring2 {
+    position: absolute;
+    right: -5%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 55vw;
+    height: 55vw;
+    max-width: 700px;
+    max-height: 700px;
+    opacity: 0.05;
+    border-radius: 50%;
+    border: 1px solid var(--sawdust);
+  }
+  .hero-ring2::before {
+    content: '';
+    position: absolute;
+    inset: 46%;
+    border-radius: 50%;
+    background: var(--sawdust);
+    opacity: 0.6;
+  }
+  @keyframes ringPulse {
+    0%, 100% { opacity: 0.09; transform: translateY(-50%) scale(1); }
+    50%       { opacity: 0.14; transform: translateY(-50%) scale(1.02); }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 4rem;
+    max-width: 750px;
+  }
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    color: var(--sawdust);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s var(--ease) 0.3s forwards;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 32px; height: 1px;
+    background: var(--sawdust);
+  }
+  .hero-headline {
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.6rem;
+    opacity: 0;
+    animation: fadeUp 0.9s var(--ease) 0.5s forwards;
+  }
+  .hero-headline em {
+    font-style: italic;
+    color: var(--sawdust);
+  }
+  .hero-sub {
+    font-size: 1.05rem;
+    color: rgba(245, 240, 232, 0.72);
+    max-width: 520px;
+    margin-bottom: 2.8rem;
+    line-height: 1.7;
+    opacity: 0;
+    animation: fadeUp 0.9s var(--ease) 0.7s forwards;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.9s var(--ease) 0.9s forwards;
+  }
+  .btn-primary {
+    background: var(--sawdust);
+    color: var(--forest);
+    padding: 0.9rem 2.2rem;
+    border-radius: var(--radius);
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.04em;
+    border: none; cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: #d9bb82; transform: translateY(-2px); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--cream);
+    padding: 0.9rem 2.2rem;
+    border-radius: var(--radius);
+    font-weight: 500;
+    font-size: 0.9rem;
+    letter-spacing: 0.04em;
+    border: 1px solid rgba(245, 240, 232, 0.3);
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-ghost:hover { border-color: var(--sawdust); color: var(--sawdust); transform: translateY(-2px); }
+
+  .hero-stats {
+    position: absolute;
+    bottom: 3rem;
+    left: 4rem;
+    right: 4rem;
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: 3rem;
+    justify-content: start;
+    z-index: 2;
+    opacity: 0;
+    animation: fadeUp 0.9s var(--ease) 1.1s forwards;
+  }
+  .stat-item { display: flex; align-items: baseline; gap: 0.5rem; }
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--sawdust);
+    line-height: 1;
+  }
+  .stat-label { font-size: 0.75rem; color: rgba(245,240,232,0.6); letter-spacing: 0.05em; text-transform: uppercase; line-height: 1.2; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* =============================================
+     TRUST BAND
+  ============================================= */
+  .trust-band {
+    background: var(--pine);
+    padding: 1.2rem 4rem;
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    color: rgba(245, 240, 232, 0.75);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+  .trust-icon {
+    color: var(--sawdust);
+    font-size: 1rem;
+  }
+
+  /* =============================================
+     SECTION COMMONS
+  ============================================= */
+  .section { padding: 6rem 4rem; }
+  .section-sm { padding: 4rem 4rem; }
+  .section-inner { max-width: 1140px; margin: 0 auto; }
+  .section-eyebrow {
+    color: var(--bark);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .section-eyebrow::before { content: ''; display: block; width: 24px; height: 1px; background: var(--bark); }
+  .section-headline {
+    font-family: var(--font-display);
+    font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+    font-weight: 700;
+    color: var(--forest);
+    line-height: 1.18;
+    letter-spacing: -0.01em;
+    margin-bottom: 1.2rem;
+  }
+  .section-body {
+    font-size: 1.05rem;
+    color: var(--muted);
+    line-height: 1.75;
+    max-width: 600px;
+  }
+
+  /* =============================================
+     SERVICES
+  ============================================= */
+  .services { background: var(--cream); }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 3.5rem;
+  }
+  .service-card {
+    background: var(--offwhite);
+    padding: 3rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s var(--ease);
+    cursor: default;
+  }
+  .service-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%; height: 3px;
+    background: var(--sawdust);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s var(--ease);
+  }
+  .service-card:hover { background: #fff; }
+  .service-card:hover::after { transform: scaleX(1); }
+  .service-icon {
+    width: 52px; height: 52px;
+    background: var(--forest);
+    border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.8rem;
+    font-size: 1.4rem;
+  }
+  .service-title {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--forest);
+    margin-bottom: 0.75rem;
+    line-height: 1.25;
+  }
+  .service-text { font-size: 0.92rem; color: var(--muted); line-height: 1.7; }
+  .service-detail {
+    margin-top: 1.2rem;
+    font-size: 0.82rem;
+    color: var(--bark);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    display: flex; align-items: center; gap: 0.4rem;
+  }
+
+  /* =============================================
+     ABOUT – two-column
+  ============================================= */
+  .about { background: var(--offwhite); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  .about-visual {
+    position: relative;
+    height: 520px;
+  }
+  /* SVG tree cross-section as design art */
+  .about-artwork {
+    width: 100%; height: 100%;
+    background: var(--forest);
+    border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+    position: relative;
+  }
+  .about-artwork-inner {
+    position: relative;
+    z-index: 2;
+    padding: 3rem;
+    text-align: center;
+    color: var(--cream);
+  }
+  .about-artwork-inner svg { margin: 0 auto 1.5rem; opacity: 0.9; }
+  .about-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--sawdust);
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+  }
+  .about-artwork-inner p {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-style: italic;
+    color: rgba(245,240,232,0.8);
+    line-height: 1.5;
+  }
+  /* decorative corner badge */
+  .about-badge {
+    position: absolute;
+    bottom: 1.8rem; right: 1.8rem;
+    background: var(--sawdust);
+    color: var(--forest);
+    padding: 1rem 1.4rem;
+    border-radius: var(--radius);
+    z-index: 3;
+  }
+  .badge-num { font-family: var(--font-display); font-size: 2.2rem; font-weight: 700; line-height: 1; }
+  .badge-text { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-top: 0.2rem; }
+
+  .timeline {
+    margin-top: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  .timeline-item {
+    display: flex;
+    gap: 1.2rem;
+    align-items: flex-start;
+  }
+  .timeline-year {
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--sawdust);
+    font-size: 0.9rem;
+    min-width: 44px;
+    padding-top: 0.1rem;
+  }
+  .timeline-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--bark); margin-top: 0.4rem; flex-shrink: 0; }
+  .timeline-text { font-size: 0.9rem; color: var(--muted); line-height: 1.5; }
+
+  /* =============================================
+     REGION – nature SVG section
+  ============================================= */
+  .region {
+    background: var(--forest);
+    color: var(--cream);
+    position: relative;
+    overflow: hidden;
+  }
+  .region-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 80% at 90% 50%, rgba(46,74,44,0.5) 0%, transparent 70%);
+  }
+  .region-content { position: relative; z-index: 2; }
+  .region-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    margin-top: 3rem;
+  }
+  .region-headline {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin-bottom: 1.4rem;
+    color: var(--cream);
+  }
+  .region-headline em { font-style: italic; color: var(--sawdust); }
+  .region-body { color: rgba(245,240,232,0.72); font-size: 1rem; line-height: 1.75; margin-bottom: 2rem; }
+  .region-areas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .area-tag {
+    background: rgba(200, 169, 110, 0.15);
+    border: 1px solid rgba(200, 169, 110, 0.3);
+    color: var(--sawdust);
+    padding: 0.35rem 0.85rem;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+  /* Tree illustration using SVG */
+  .region-art {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* =============================================
+     PROCESS
+  ============================================= */
+  .process { background: var(--fog); }
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-top: 3.5rem;
+  }
+  .process-step {
+    position: relative;
+    padding: 2rem 1.5rem;
+    background: var(--offwhite);
+    border-radius: var(--radius);
+  }
+  .process-step:not(:last-child)::after {
+    content: '→';
+    position: absolute;
+    right: -1.2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--sawdust);
+    font-size: 1.1rem;
+    z-index: 1;
+  }
+  .step-num {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--fog);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .step-title { font-family: var(--font-display); font-size: 1.05rem; font-weight: 600; color: var(--forest); margin-bottom: 0.5rem; }
+  .step-text { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
+
+  /* =============================================
+     TESTIMONIAL / TRUST
+  ============================================= */
+  .trust-section { background: var(--cream); }
+  .trust-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 4rem;
+    align-items: start;
+    margin-top: 3.5rem;
+  }
+  .testimonial-card {
+    background: var(--forest);
+    padding: 3rem;
+    border-radius: var(--radius);
+    position: relative;
+  }
+  .testimonial-card::before {
+    content: '"';
+    font-family: var(--font-display);
+    font-size: 8rem;
+    color: var(--sawdust);
+    opacity: 0.25;
+    line-height: 1;
+    position: absolute;
+    top: 0.5rem; left: 1.5rem;
+    pointer-events: none;
+  }
+  .testimonial-text {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-style: italic;
+    color: var(--cream);
+    line-height: 1.65;
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
+  .testimonial-author {
+    font-size: 0.82rem;
+    color: var(--sawdust);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .awards {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  .award-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    padding: 1.2rem;
+    background: var(--offwhite);
+    border-radius: var(--radius);
+    border-left: 3px solid var(--sawdust);
+  }
+  .award-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 0.1rem; }
+  .award-title { font-size: 0.9rem; font-weight: 600; color: var(--forest); margin-bottom: 0.2rem; }
+  .award-text { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+
+  /* =============================================
+     CTA BAND
+  ============================================= */
+  .cta-band {
+    background: linear-gradient(135deg, var(--bark) 0%, #3d2510 100%);
+    padding: 5rem 4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-band::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C8A96E' fill-opacity='0.06'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.6;
+  }
+  .cta-band-inner { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+  .cta-headline {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+  .cta-headline em { font-style: italic; color: var(--sawdust); }
+  .cta-sub { color: rgba(245,240,232,0.7); font-size: 1rem; margin-bottom: 2.5rem; line-height: 1.7; }
+  .cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .cta-tel { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--cream); font-size: 1.4rem; font-family: var(--font-display); font-weight: 700; margin-bottom: 1.5rem; }
+
+  /* =============================================
+     CONTACT
+  ============================================= */
+  .contact { background: var(--offwhite); }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .contact-details { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2.5rem; }
+  .contact-item { display: flex; gap: 1rem; align-items: flex-start; }
+  .contact-icon-wrap {
+    width: 40px; height: 40px;
+    background: var(--forest);
+    border-radius: var(--radius);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: 1rem;
+  }
+  .contact-label { font-size: 0.75rem; font-weight: 600; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.2rem; }
+  .contact-value { font-size: 1rem; color: var(--charcoal); font-weight: 500; }
+  .contact-value a { color: var(--bark); transition: color 0.2s; }
+  .contact-value a:hover { color: var(--forest); }
+
+  .contact-form { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 2.5rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-label { font-size: 0.78rem; font-weight: 600; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
+  .form-input, .form-textarea {
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--fog);
+    border-radius: var(--radius);
+    background: var(--cream);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--charcoal);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    width: 100%;
+  }
+  .form-input:focus, .form-textarea:focus {
+    outline: none;
+    border-color: var(--bark);
+    box-shadow: 0 0 0 3px rgba(92, 61, 30, 0.1);
+  }
+  .form-textarea { min-height: 130px; resize: vertical; }
+  .form-submit {
+    background: var(--forest);
+    color: var(--cream);
+    padding: 1rem 2rem;
+    border-radius: var(--radius);
+    border: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.15s;
+    align-self: flex-start;
+  }
+  .form-submit:hover { background: var(--pine); transform: translateY(-1px); }
+
+  /* =============================================
+     FOOTER
+  ============================================= */
+  .footer {
+    background: var(--charcoal);
+    padding: 3.5rem 4rem 2rem;
+    color: rgba(245,240,232,0.6);
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 3rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 1.5rem;
+  }
+  .footer-brand { color: var(--cream); margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.6rem; }
+  .footer-brand-mark { width: 30px; height: 30px; background: var(--sawdust); border-radius: 2px; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; color: var(--forest); font-size: 0.9rem; flex-shrink: 0; }
+  .footer-desc { font-size: 0.85rem; line-height: 1.65; max-width: 300px; }
+  .footer-heading { font-size: 0.75rem; font-weight: 600; color: var(--cream); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1rem; }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .footer-links a { font-size: 0.88rem; color: rgba(245,240,232,0.55); transition: color 0.2s; }
+  .footer-links a:hover { color: var(--sawdust); }
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.78rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  /* =============================================
+     MOBILE
+  ============================================= */
+  @media (max-width: 900px) {
+    .nav { padding: 1.2rem 1.5rem; }
+    .nav-links { display: none; }
+    .nav-toggle { display: block; }
+    .nav-links.open {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 100%; left: 0; right: 0;
+      background: var(--forest);
+      padding: 1.5rem;
+      gap: 1rem;
+    }
+    .nav-cta { display: none; }
+    .section, .section-sm { padding: 4rem 1.5rem; }
+    .hero-content { padding: 0 1.5rem; }
+    .hero-stats { left: 1.5rem; right: 1.5rem; grid-template-columns: repeat(3, auto); gap: 1.5rem; }
+    .trust-band { padding: 1.2rem 1.5rem; gap: 1rem; }
+    .services-grid { grid-template-columns: 1fr; gap: 2px; }
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .about-visual { height: 320px; }
+    .region-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .region-art { display: none; }
+    .process-steps { grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .process-step:not(:last-child)::after { display: none; }
+    .trust-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .form-row { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .footer { padding: 3rem 1.5rem 1.5rem; }
+    .cta-band { padding: 4rem 1.5rem; }
+    .hero-rings, .hero-ring2 { display: none; }
+  }
+  @media (max-width: 600px) {
+    .process-steps { grid-template-columns: 1fr; }
+    .hero-stats { display: none; }
+    .stat-item { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="mainNav">
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-mark">SN</div>
+    <div class="nav-logo-text">Sägewerk<br>Neuhatten</div>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#leistungen">Leistungen</a></li>
+    <li><a href="#ueber-uns">Über uns</a></li>
+    <li><a href="#region">Region</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+    <li><a href="tel:044821526" class="nav-cta">☎ 04482 1526</a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Menü öffnen">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-rings"></div>
+  <div class="hero-ring2"></div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">Kirchhatten · Seit 1930</div>
+    <h1 class="hero-headline">
+      Wo Holz noch<br><em>handwerklich</em><br>gesägt wird.
+    </h1>
+    <p class="hero-sub">
+      Stationärer und mobiler Lohnschnitt, Jagdeinrichtungen &amp; Hochsitze — in vierter Generation, aus Leidenschaft für das Handwerk.
+    </p>
+    <div class="hero-actions">
+      <a href="#kontakt" class="btn-primary">Jetzt anfragen</a>
+      <a href="tel:044821526" class="btn-ghost">☎ 04482 1526 anrufen</a>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-num">95+</div>
+      <div class="stat-label">Jahre<br>Erfahrung</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">4.</div>
+      <div class="stat-label">Generation<br>Familienbetrieb</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">6+</div>
+      <div class="stat-label">Landkreise<br>Einsatzgebiet</div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAND -->
+<div class="trust-band">
+  <div class="trust-item"><span class="trust-icon">✓</span> Mobil & stationär verfügbar</div>
+  <div class="trust-item"><span class="trust-icon">✓</span> Individuell nach Maß</div>
+  <div class="trust-item"><span class="trust-icon">✓</span> Regionale Verwurzelung</div>
+  <div class="trust-item"><span class="trust-icon">✓</span> Bewährte Technik (LT20)</div>
+  <div class="trust-item"><span class="trust-icon">✓</span> Persönlicher Ansprechpartner</div>
+</div>
+
+<!-- SERVICES -->
+<section class="section services" id="leistungen">
+  <div class="section-inner">
+    <div class="section-eyebrow">Leistungen</div>
+    <h2 class="section-headline">Alles rund ums Holz —<br>aus einer Hand.</h2>
+
+    <div class="services-grid">
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg width="24" height="24" fill="none" stroke="#C8A96E" stroke-width="2" viewBox="0 0 24 24">
+            <rect x="2" y="3" width="20" height="14" rx="1"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+          </svg>
+        </div>
+        <h3 class="service-title">Stationärer Lohnschnitt</h3>
+        <p class="service-text">
+          Sie bringen Ihre Baumstämme zu uns auf den Hof in Kirchhatten — wir übernehmen den Rest. Mit bewährter Sägewerktechnik schneiden wir Ihr Holz präzise nach Wunschmaß.
+        </p>
+        <div class="service-detail">
+          <span>Auf dem Hof in Kirchhatten</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg width="24" height="24" fill="none" stroke="#C8A96E" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M1 3h15v13H1z"/><path d="M16 8l4 0 3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
+          </svg>
+        </div>
+        <h3 class="service-title">Mobiles Sägewerk</h3>
+        <p class="service-text">
+          Wir kommen mit dem LT20 direkt zu Ihnen vor Ort. Perfekt für größere Mengen, schwer transportierbares Holz oder wenn der Schnitt mitten auf dem Grundstück erfolgen soll.
+        </p>
+        <div class="service-detail">
+          <span>Einsatz im gesamten Einsatzgebiet</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg width="24" height="24" fill="none" stroke="#C8A96E" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M3 17l4-8 4 5 3-3 5 6"/><path d="M21 3l-5 5m0 0V4m0 4h4"/>
+          </svg>
+        </div>
+        <h3 class="service-title">Jagdeinrichtungen & Hochsitze</h3>
+        <p class="service-text">
+          Standardmodelle oder vollständig nach Ihren Wünschen gefertigt — robuste Hochsitze und Jagdeinrichtungen aus regionalem Kiefernholz, die Jahrzehnte halten.
+        </p>
+        <div class="service-detail">
+          <span>Maßfertigung möglich</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section about" id="ueber-uns">
+  <div class="section-inner">
+    <div class="about-grid">
+
+      <div class="about-visual">
+        <div class="about-artwork">
+          <!-- SVG Tree cross section -->
+          <svg width="100%" height="100%" viewBox="0 0 500 500" style="position:absolute;inset:0;opacity:0.25;" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="250" cy="250" r="230" fill="none" stroke="#C8A96E" stroke-width="1.5"/>
+            <circle cx="250" cy="250" r="195" fill="none" stroke="#C8A96E" stroke-width="0.8"/>
+            <circle cx="250" cy="250" r="158" fill="none" stroke="#C8A96E" stroke-width="0.8"/>
+            <circle cx="250" cy="250" r="120" fill="none" stroke="#C8A96E" stroke-width="0.8"/>
+            <circle cx="250" cy="250" r="82" fill="none" stroke="#C8A96E" stroke-width="0.8"/>
+            <circle cx="250" cy="250" r="44" fill="none" stroke="#C8A96E" stroke-width="1.2"/>
+            <line x1="20" y1="250" x2="480" y2="250" stroke="#C8A96E" stroke-width="0.5"/>
+            <line x1="250" y1="20" x2="250" y2="480" stroke="#C8A96E" stroke-width="0.5"/>
+            <line x1="87" y1="87" x2="413" y2="413" stroke="#C8A96E" stroke-width="0.4"/>
+            <line x1="413" y1="87" x2="87" y2="413" stroke="#C8A96E" stroke-width="0.4"/>
+          </svg>
+          <div class="about-artwork-inner">
+            <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M30 5 L30 55" stroke="#C8A96E" stroke-width="2"/>
+              <path d="M30 20 L15 35 L30 32 L45 35 Z" fill="#2E4A2C" stroke="#C8A96E" stroke-width="1.5"/>
+              <path d="M30 12 L18 28 L30 25 L42 28 Z" fill="#2E4A2C" stroke="#C8A96E" stroke-width="1.5"/>
+              <path d="M30 5 L20 22 L30 19 L40 22 Z" fill="#2E4A2C" stroke="#C8A96E" stroke-width="1.5"/>
+              <rect x="25" y="45" width="10" height="10" fill="#C8A96E" opacity="0.4"/>
+            </svg>
+            <div class="about-label">Sägewerk Neuhatten</div>
+            <p>„Der beste Baustoff<br>für die Zukunft? Holz."</p>
+          </div>
+          <div class="about-badge">
+            <div class="badge-num">1930</div>
+            <div class="badge-text">Gegründet</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="section-eyebrow">Über uns</div>
+        <h2 class="section-headline">Vier Generationen —<br>eine Leidenschaft.</h2>
+        <p class="section-body">
+          In unserem Sägewerk in Kirchhatten, Ortsteil Neuhatten, arbeiten wir mit bewährter Technik und dem Wissen, das über Jahrzehnte weitergegeben wurde. Was 1930 als Zimmerei begann, ist heute ein traditionsreicher Familienbetrieb.
+        </p>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-year">1930</div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-text">Fritz Schlake gründet die Zimmerei — der Ursprung des Betriebs.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">1958</div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-text">Alfred Schlake übernimmt den Betrieb und baut das Sägewerk aus.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">1971</div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-text">Horst Nickig führt das Lohnschnitt-Sägewerk weiter.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2007</div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-text">Jan-Friedrich Stelter, Urenkel des Gründers, übernimmt das Sägewerk Neuhatten.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- REGION -->
+<section class="section region" id="region">
+  <div class="region-bg"></div>
+  <div class="section-inner region-content">
+
+    <div class="region-grid">
+      <div>
+        <div class="section-eyebrow" style="color: rgba(200,169,110,0.7);">Unser Einsatzgebiet</div>
+        <h2 class="region-headline">Verwurzelt in<br><em>Niedersachsen.</em></h2>
+        <p class="region-body">
+          Hauptsächlich sind wir in der Gemeinde Hatten und dem Landkreis Oldenburg tätig. Für den mobilen Lohnschnitt kommen wir jedoch auch in die angrenzenden Landkreise — zuverlässig und pünktlich.
+        </p>
+        <div class="region-areas">
+          <span class="area-tag">Hatten</span>
+          <span class="area-tag">Kirchhatten</span>
+          <span class="area-tag">Oldenburg</span>
+          <span class="area-tag">Cloppenburg</span>
+          <span class="area-tag">Vechta</span>
+          <span class="area-tag">Diepholz</span>
+          <span class="area-tag">Wesermarsch</span>
+          <span class="area-tag">Ammerland</span>
+        </div>
+      </div>
+
+      <div class="region-art">
+        <!-- Stylized forest illustration SVG -->
+        <svg width="340" height="360" viewBox="0 0 340 360" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity:0.55;">
+          <!-- Tree 1 (left) -->
+          <rect x="42" y="270" width="12" height="60" fill="#5C3D1E"/>
+          <polygon points="48,50 18,130 38,125 22,190 42,185 28,250 68,250 54,185 74,190 58,125 78,130" fill="#2E4A2C"/>
+          <!-- Tree 2 (center, tallest) -->
+          <rect x="163" y="240" width="14" height="90" fill="#5C3D1E"/>
+          <polygon points="170,10 132,110 158,104 138,175 165,168 148,230 192,230 175,168 202,175 182,104 208,110" fill="#1C2B1A"/>
+          <polygon points="170,10 132,110 158,104 138,175 165,168 148,230 192,230 175,168 202,175 182,104 208,110" fill="#2E4A2C" opacity="0.7"/>
+          <!-- Tree 3 (right) -->
+          <rect x="278" y="280" width="10" height="50" fill="#5C3D1E"/>
+          <polygon points="283,80 258,155 275,150 262,207 279,203 268,255 298,255 287,203 304,207 291,150 308,155" fill="#2E4A2C"/>
+          <!-- Ground -->
+          <rect x="0" y="325" width="340" height="35" fill="#1C2B1A" rx="2"/>
+          <!-- Decorative dots (stars) -->
+          <circle cx="120" cy="40" r="2" fill="#C8A96E" opacity="0.6"/>
+          <circle cx="240" cy="65" r="1.5" fill="#C8A96E" opacity="0.4"/>
+          <circle cx="80" cy="80" r="1.5" fill="#C8A96E" opacity="0.5"/>
+          <circle cx="290" cy="40" r="2" fill="#C8A96E" opacity="0.3"/>
+          <!-- Moon / Sun -->
+          <circle cx="50" cy="50" r="18" fill="#C8A96E" opacity="0.15"/>
+          <circle cx="50" cy="50" r="12" fill="#C8A96E" opacity="0.2"/>
+        </svg>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="section process">
+  <div class="section-inner">
+    <div class="section-eyebrow">Ablauf</div>
+    <h2 class="section-headline">Einfach & unkompliziert.</h2>
+
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="step-num">01</div>
+        <div class="step-title">Anfrage & Beratung</div>
+        <p class="step-text">Sie rufen an oder schreiben uns. Wir besprechen gemeinsam Ihren Bedarf — Holzart, Menge, gewünschte Schnittmaße.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">02</div>
+        <div class="step-title">Termin vereinbaren</div>
+        <p class="step-text">Stationär bei uns auf dem Hof oder mobil bei Ihnen vor Ort — wir finden einen Termin, der passt.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">03</div>
+        <div class="step-title">Präziser Schnitt</div>
+        <p class="step-text">Mit bewährter Technik und Erfahrung werden Ihre Stämme genau nach Maß gesägt. Sauber. Schnell. Zuverlässig.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">04</div>
+        <div class="step-title">Fertig & abgeholt</div>
+        <p class="step-text">Ihr Schnittholz ist bereit — abholbereit auf dem Hof oder bereits direkt bei Ihnen auf dem Grundstück.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST / TESTIMONIAL -->
+<section class="section trust-section">
+  <div class="section-inner">
+    <div class="section-eyebrow">Kundenstimmen</div>
+    <h2 class="section-headline">Was Kunden über uns sagen.</h2>
+
+    <div class="trust-grid">
+      <div class="testimonial-card">
+        <p class="testimonial-text">
+          „Zuverlässiger, unkomplizierter Betrieb mit echter handwerklicher Kompetenz. Das mobile Sägewerk ist genau das, was wir gebraucht haben — direkt auf dem Grundstück, kein Transport-Aufwand. Sehr empfehlenswert!"
+        </p>
+        <div class="testimonial-author">⭐⭐⭐⭐⭐ — Zufriedener Kunde, Region Oldenburg</div>
+      </div>
+
+      <div class="awards">
+        <div class="award-item">
+          <div class="award-icon">🌲</div>
+          <div>
+            <div class="award-title">Regionales Holzhandwerk</div>
+            <div class="award-text">Kiefernholz aus der Region, verarbeitet in der Region — kurze Wege, maximale Qualität.</div>
+          </div>
+        </div>
+        <div class="award-item">
+          <div class="award-icon">🏹</div>
+          <div>
+            <div class="award-title">Jagdeinrichtungen nach Maß</div>
+            <div class="award-text">Hochsitze und Jagdeinrichtungen — robust gebaut, individuell gefertigt, langlebig.</div>
+          </div>
+        </div>
+        <div class="award-item">
+          <div class="award-icon">🤝</div>
+          <div>
+            <div class="award-title">Familienbetrieb seit 1930</div>
+            <div class="award-text">Vier Generationen handwerkliche Erfahrung — persönlicher Kontakt, faires Preis-Leistungs-Verhältnis.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <div class="cta-band-inner">
+    <div class="cta-tel">☎ 04482 1526</div>
+    <h2 class="cta-headline">Bereit für Ihr<br><em>nächstes Holzprojekt?</em></h2>
+    <p class="cta-sub">Ob Lohnschnitt, mobiles Sägewerk oder Hochsitz — rufen Sie einfach an oder schreiben Sie uns. Wir melden uns schnell zurück.</p>
+    <div class="cta-actions">
+      <a href="tel:044821526" class="btn-primary">☎ Jetzt anrufen</a>
+      <a href="#kontakt" class="btn-ghost">Nachricht schreiben</a>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section class="section contact" id="kontakt">
+  <div class="section-inner">
+    <div class="contact-grid">
+      <div>
+        <div class="section-eyebrow">Kontakt</div>
+        <h2 class="section-headline">Wir sind für Sie da.</h2>
+        <p class="section-body">Rufen Sie an — oder nutzen Sie das Formular. Wir antworten persönlich und unkompliziert.</p>
+
+        <div class="contact-details">
+          <div class="contact-item">
+            <div class="contact-icon-wrap">📍</div>
+            <div>
+              <div class="contact-label">Adresse</div>
+              <div class="contact-value">Neuhatter Str. 15<br>26209 Hatten (Kirchhatten)</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon-wrap">☎</div>
+            <div>
+              <div class="contact-label">Telefon</div>
+              <div class="contact-value"><a href="tel:044821526">04482 1526</a></div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon-wrap">🌐</div>
+            <div>
+              <div class="contact-label">Website</div>
+              <div class="contact-value"><a href="http://www.saegewerk-neuhatten.de" target="_blank">www.saegewerk-neuhatten.de</a></div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon-wrap">📸</div>
+            <div>
+              <div class="contact-label">Instagram</div>
+              <div class="contact-value"><a href="https://www.instagram.com/saegewerk_neuhatten" target="_blank">@saegewerk_neuhatten</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="section-eyebrow" style="margin-top: 0;">Anfrage senden</div>
+        <div class="contact-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="fname">Vorname</label>
+              <input class="form-input" id="fname" type="text" placeholder="Max">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="lname">Nachname</label>
+              <input class="form-input" id="lname" type="text" placeholder="Mustermann">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="email">E-Mail</label>
+            <input class="form-input" id="email" type="email" placeholder="max@beispiel.de">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="phone">Telefon (optional)</label>
+            <input class="form-input" id="phone" type="tel" placeholder="0441 ...">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="service">Leistung</label>
+            <select class="form-input" id="service">
+              <option value="">Bitte wählen...</option>
+              <option value="lohnschnitt-stationaer">Lohnschnitt (stationär)</option>
+              <option value="lohnschnitt-mobil">Mobiles Sägewerk (vor Ort)</option>
+              <option value="jagdeinrichtungen">Jagdeinrichtungen / Hochsitz</option>
+              <option value="sonstiges">Sonstiges</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="message">Ihre Nachricht</label>
+            <textarea class="form-textarea" id="message" placeholder="Beschreiben Sie kurz Ihr Vorhaben — Holzart, Menge, Ort..."></textarea>
+          </div>
+          <button class="form-submit">Anfrage absenden →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="section-inner">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <div class="footer-brand-mark">SN</div>
+          <strong>Sägewerk Neuhatten</strong>
+        </div>
+        <p class="footer-desc">Traditionsreicher Familienbetrieb für Lohnschnitt und Jagdeinrichtungen in Kirchhatten. Seit 1930 in vierter Generation.</p>
+      </div>
+      <div>
+        <div class="footer-heading">Leistungen</div>
+        <ul class="footer-links">
+          <li><a href="#leistungen">Stationärer Lohnschnitt</a></li>
+          <li><a href="#leistungen">Mobiles Sägewerk (LT20)</a></li>
+          <li><a href="#leistungen">Jagdeinrichtungen</a></li>
+          <li><a href="#leistungen">Hochsitze nach Maß</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Kontakt</div>
+        <ul class="footer-links">
+          <li><a href="tel:044821526">☎ 04482 1526</a></li>
+          <li><span>Neuhatter Str. 15, 26209 Hatten</span></li>
+          <li><a href="https://www.instagram.com/saegewerk_neuhatten" target="_blank">Instagram</a></li>
+          <li><a href="#kontakt">Anfrage stellen</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Sägewerk Neuhatten · Inh. Jan-Friedrich Stelter</span>
+      <span><a href="#" style="color:rgba(245,240,232,0.4); transition: color 0.2s;" onmouseover="this.style.color='#C8A96E'" onmouseout="this.style.color='rgba(245,240,232,0.4)'">Impressum</a> · <a href="#" style="color:rgba(245,240,232,0.4); transition: color 0.2s;" onmouseover="this.style.color='#C8A96E'" onmouseout="this.style.color='rgba(245,240,232,0.4)'">Datenschutz</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Sticky Nav
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Mobile toggle
+  const toggle = document.getElementById('navToggle');
+  const links  = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => {
+    links.classList.toggle('open');
+  });
+  // Close on link click
+  links.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => links.classList.remove('open'));
+  });
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.service-card, .process-step, .award-item, .timeline-item').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
+  });
+
+  // Form submit
+  document.querySelector('.form-submit').addEventListener('click', () => {
+    const fname = document.getElementById('fname').value;
+    if (!fname) { alert('Bitte geben Sie Ihren Namen ein.'); return; }
+    alert('Vielen Dank für Ihre Anfrage! Wir melden uns schnellstmöglich bei Ihnen.');
+  });
+</script>
+
+</body>
+</html>
